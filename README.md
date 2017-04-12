@@ -4,7 +4,7 @@ jQueryNumberFormatter
 A jQuery Number Formatter Plugin.
 
 
-(Mostly migrated from google code, will be missing latest unit testing. Will be updated in next few weeks to tidy up a few things post migration.)
+(Mostly migrated from google code @ https://code.google.com/archive/p/jquery-numberformatter/. Readme needs updating for clarity.)
 
 
 This plugin is a number formatting and parsing plugin for jQuery.
@@ -12,8 +12,7 @@ This plugin is a number formatting and parsing plugin for jQuery.
 
 Current Release: 1.2.4 [2013-10-22] Requires jQuery (1.x) and jshashtable (2.x or 3.0)
 Thanks to all the contributions for defects and enhancements, I have more time these days to address them.
-My time now will be focussed more on defects here and a rewrite hosted on github that supports more features and works with plain javascript as well as jQuery (https://github.com/andrewgp/jsNumberFormatter) _
-_
+My time now will be focussed more on defects here and a rewrite hosted on github that supports more features and works with plain javascript as well as jQuery (https://github.com/andrewgp/jsNumberFormatter).
 
 Number formatting is likely familiar to anyone who's worked with server-side code like Java or PHP and who has worked with internationalization. People who aren't stuck in the US-centric frame of mind can quickly point out that people in other parts of the world don't format their numbers in the same way as Americans. For example, a number that we would write in the US as "1,250,500.75" would be written differently in different countries: "1.250.500,75" in Germany, "1 250 500,75" in France, and "1'250'500.75" in Switzerland, and "125,0500.75" in Japan. The number is exactly the same, but it's just written using a different format when presented to users of the web application.
 I've been working during the 1.2 rewrite to separate the parsing and formatting more. So your now required to parse the text first into a js number, before formatting it back into text. This should hopefully give more control over the process and allow more flexibility of use.
@@ -25,13 +24,10 @@ Here's a typical use case for what I'm describing. You have an input field in yo
 Here's an example of how you'd use this plugin.
 $("#salary").blur(function(){
 
-
    $(this).parseNumber({format:"#,###.00", locale:"us"});
-
-
+   
    $(this).formatNumber({format:"#,###.00", locale:"us"});
-
-
+   
 });
 
 
@@ -41,73 +37,43 @@ Say we have 2 text input fields, one accepts US format numbers, the other unform
 
 $("#salaryUS").blur(function(){
 
-
    // take US format text into std number format
-
-
+   
    var number = $(this).parseNumber({format:"#,###.00", locale:"us"}, false);
-
-
+   
    // write the number out
-
-
    $("#salaryUnformatted").val(number);
-
-
-
 
 
    // OR
-
-
-
-
-
+   
    number = $(this).val();
-
-
+   
    number = $.parseNumber(number, {format:"#,###.00", locale:"us"});
-
-
+   
    $("#salaryUnformatted").val(number);
-
-
+   
 });
-
-
-
 
 
 $("#salaryUnformatted").blur(function(){
 
-
    // take the unformatted text and format into US number format
-
-
+   
    $("#salaryUS").val($(this).val());
-
-
+   
    $("#salaryUS").formatNumber({format:"#,###.00", locale:"us"});
-
-
-
 
 
    // OR
 
 
-
-
-
    var number = $(this).val();
-
-
+   
    number = $.formatNumber(number, {format:"#,###.00", locale:"us"});
-
-
+   
    $("#salaryUS").val(number);
-
-
+   
 });
 
 
@@ -117,48 +83,86 @@ Syntax
 The syntax for the formatting is:
 
 0 = Digit
+
 # = Digit, zero shows as absent
+
 . = Decimal separator
+
 - = Negative sign
+
 , = Grouping Separator
+
 % = Percent (multiplies number by 100)
+
 Supported Locales
+
 
 Here are the supported Locales. They were chosen because a) they are offered by the Java DecimalFormatter or b) I just felt that they were interesting and wanted to include them.
 
+
 United States -> "us"
+
 Arab Emirates -> "ae"
+
 Egypt -> "eg"
+
 Israel -> "il"
+
 Japan -> "jp"
+
 South Korea -> "kr"
+
 Thailand -> "th"
+
 China -> "cn"
+
 Hong Kong -> "hk"
+
 Taiwan -> "tw"
+
 Australia -> "au"
+
 Canada -> "ca"
+
 Great Britain -> "gb"
+
 India -> "in"
+
 Germany -> "de"
+
 Vietnam -> "vn"
+
 Spain -> "es"
+
 Denmark -> "dk"
+
 Austria -> "at"
+
 Greece -> "gr"
+
 Brazil -> "br"
+
 Czech -> "cz"
+
 France -> "fr"
+
 Finland -> "fi"
+
 Russia -> "ru"
+
 Sweden -> "se"
+
 Switzerland -> "ch"
+
 Mentions
+
 
 Thanks to the excellent http://www.timdown.co.uk/jshashtable/'>jshashtable project, which is currently a requirement of the script, I may decide to support a standalone version too at some point.
 
 
+
 SNAPSHOTS
+
 
 Available from the svn repo (https://jquery-numberformatter.googlecode.com/svn/trunk'>https://jquery-numberformatter.googlecode.com/svn/trunk), please take care to read the notes in the main js file, may be unstable or incomplete.
 
@@ -186,12 +190,6 @@ Issues Fixed:
 50 - Added 'isPercentage' option to parsing, to force percentage handling
 53 - Made locale a bit more strict and allowed it to extract country code from a java like locale string (en_NL etc.)
 1.2.2
-
-All outstanding verified bugs resolved
-1.2.1
-
-All outstanding verified issues resolved
-1.2
 
 New/Fixes
 
